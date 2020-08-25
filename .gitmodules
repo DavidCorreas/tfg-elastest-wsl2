@@ -1,0 +1,3 @@
+[submodule "custom-kernel/windows-scripts"]
+	path = custom-kernel/windows-scripts
+	url = https://gist.github.com/b1d96515f87a47bd0b0bea574eab5583.git
