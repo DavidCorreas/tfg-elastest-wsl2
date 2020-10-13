@@ -60,8 +60,9 @@ hacer uso de este kernel.
 2. Actualizar _.wslconfig_ con la ruta de dentro del fichero apuntando a nuestro
 nuevo kernel y copiarla a la misma carpeta que el kernel. `cp .\windows-scripts\.wslconfig C:\Users\<User>`
 3. Tener _windbg.exe_ (descargar si no se tiene [aquí](https://developer.microsoft.com/es-es/windows/downloads/windows-10-sdk/)) 
-en el path y actualizar el path de _.\windows-scripts\attach.wdbg_.
-4. Abrir un PowerShell en modo administrador y ejecutar _.\run-wsl.bat_. 
+en el path. Cambiar _run-wsl.bat_ de `windbgx.exe` a `windbg.exe` (linea 5).
+4. Actualizar el path de _.\windows-scripts\attach.wdbg_.
+5. Abrir un PowerShell en modo administrador y ejecutar _.\run-wsl.bat_. 
 `cd .\windows-scripts\` `.\run-wsl.bat`
 
 #### Observaciones
@@ -76,5 +77,5 @@ Errores que pueden dar al seguir estos pasos:
 - Cosas a tener en cuenta:
     + Ejecutar el .bat en una terminal localizada en el path donde este (no ejecutar script directamente "run as administrator").
     + Cada vez que se quiera usar ese kernel tengo que ejecutar el bat y no se puede cerrar.
-    + Si se usa el repositorio original: cambiar run-wsl.bat de windbgx.exe a windbg.exe
+    + Cambiar run-wsl.bat de windbgx.exe a windbg.exe
     + No olvidar: Cambiar ruta de _attach.wdbg_ a la ubicacion de _patch_wsl_nested.js_.
