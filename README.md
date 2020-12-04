@@ -53,17 +53,16 @@ sido sacados de la siguiente [página](https://microhobby.com.br/blog/2019/09/21
 En principio, no se debe compilar un kernel, ya que se encuentra en el repositorio. Si se quisiese compilar un 
 kernel personalizado se han de seguir los pasos mencionados en la página anterior.
 
-Para desplegarlo, se va a hacer uso del siguiente [repositorio](https://gist.github.com/offlinehacker/b1d96515f87a47bd0b0bea574eab5583) que cuenta con los scripts necesarios para 
-hacer uso de este kernel.
+Para desplegarlo, se va a hacer uso del siguiente [repositorio](https://gist.github.com/offlinehacker/b1d96515f87a47bd0b0bea574eab5583) que cuenta con los scripts necesarios para hacer uso de este kernel.
 
-1. Copiar el kernel del repositorio en la carpeta de usuario `cp .\windows-scripts\vmlinux C:\Users\<User>`
+1. Copiar el kernel del repositorio en la carpeta de usuario `cp .\vmlinux C:\Users\<User>`
 2. Actualizar _.wslconfig_ con la ruta de dentro del fichero apuntando a nuestro
 nuevo kernel y copiarla a la misma carpeta que el kernel. `cp .\windows-scripts\.wslconfig C:\Users\<User>`
-3. Tener _windbg.exe_ (descargar si no se tiene [aquí](https://developer.microsoft.com/es-es/windows/downloads/windows-10-sdk/)) 
-en el path. Cambiar _run-wsl.bat_ de `windbgx.exe` a `windbg.exe` (linea 5).
+3. Descargar WinDbg Preview de la Microsoft Store.
 4. Actualizar el path de _.\windows-scripts\attach.wdbg_.
-5. Abrir un PowerShell en modo administrador y ejecutar _.\run-wsl.bat_. 
-`cd .\windows-scripts\` `.\run-wsl.bat`
+5. Abrir un PowerShell en modo administrador, navegar al directorio del repositorio donde se encuentran los scripts y ejecutar _.\run-wsl.bat_. 
+`cd .\windows-scripts\` `.\run-wsl.bat`.
+6. IMPORTANTE: Esperar a que el programa WinDbg comience el debugger. Hasta que no salgan logs no pulsar una tecla para iniciar.
 
 #### Observaciones
 
@@ -71,11 +70,9 @@ Usamos la pagina https://gist.github.com/offlinehacker/b1d96515f87a47bd0b0bea574
 
 Errores que pueden dar al seguir estos pasos:
 - En el Linux, hay que instalar gcc y make, libncurses5-dev, bison, flex, libelf-dev, libssl-dev
-- No tenemos Windbgx.exe y descargamos el SDK de Windows: https://developer.microsoft.com/es-es/windows/downloads/windows-10-sdk/
-    + Solo marcamos la opcion de debugging tools
-    + Path de windbg.exe: C:\Program Files (x86)\Windows Kits\10\Debuggers\x64
 - Cosas a tener en cuenta:
     + Ejecutar el .bat en una terminal localizada en el path donde este (no ejecutar script directamente "run as administrator").
     + Cada vez que se quiera usar ese kernel tengo que ejecutar el bat y no se puede cerrar.
-    + Cambiar run-wsl.bat de windbgx.exe a windbg.exe
+    + Una vez ejecutado, se tiene que esperar por el debugger.
+    + Fallará si se ejecuta el script directamente en la consola de PowerShell como administrador. Se tiene primero que navegar a su carpeta y después ejecutar el script.
     + No olvidar: Cambiar ruta de _attach.wdbg_ a la ubicacion de _patch_wsl_nested.js_.
